@@ -1,7 +1,11 @@
+tic;
 close;
-audio_files = dir("ooo");
-audio_files(1:2)=[];
-all_fns = {audio_files(:).name};
+audio_files = dir('*.wav');
+all_fns1 = {audio_files(:).name};
+vowels = {'aaa' , 'eee' , 'ooo' , 'yee' , 'uuu'};
+TF1 = contains(all_fns1 , vowels , 'IgnoreCase' , true); %excluding non-vowel files for the algo
+all_fns = all_fns1(TF1);
+
 
 fms = zeros(1, length(all_fns));
 count = zeros(4, length(all_fns));
@@ -77,3 +81,4 @@ stem(1: length(fms), fms);
 
 subplot(2, 1, 2);
 stem(1: length(count), count(4, :));
+toc;
