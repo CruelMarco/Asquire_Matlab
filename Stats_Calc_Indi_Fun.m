@@ -1,5 +1,5 @@
 tic;
-filename = '4017_P_Asthma_M_before_Mil_Y_aaa_5.wav'
+filename = '4079_P_Asthma_M_after_Sev_Y_Aaa_1_5.wav'
 fid = fopen([filename(1:end-3) 'txt']);
 annot = textscan(fid,'%f\t%f\t%s' );
 
@@ -49,6 +49,9 @@ pred_start_time = zeros(1,length(t2))';
 pred_start_time(pred_start_ind) = 1;
 pred_stop_time = zeros(1,length(t2))';
 pred_stop_time(pred_stop_ind) = 1;
+
+st_time = t2(pred_start_ind);
+stop_time = t2(pred_stop_ind);
 
 predicted_duration = stop_time - st_time;
 
