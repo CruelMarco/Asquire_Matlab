@@ -1,5 +1,5 @@
 tic;
-filename = '4079_P_Asthma_M_after_Sev_Y_Aaa_1_5.wav'
+filename = 'webapp-asquire-mox_aryan-7638ca98_aa_2_7.wav';
 fid = fopen([filename(1:end-3) 'txt']);
 annot = textscan(fid,'%f\t%f\t%s' );
 
@@ -12,7 +12,7 @@ T = linspace(0,M/fs,M)';
 st = zeros(1, M)';
 st(start_timestamp) = 1;
 en = zeros(1, M)';
-en(finish_timestamp) = 1;
+en(finish_timestamp) = 1; 
 subplot(311);
 hold on;
 plot(T,sig);
@@ -21,14 +21,19 @@ plot(T,en,'red');
 title('AudioSig');
 xlabel('Time');
 ylabel('Amp');
+subplot(312)
+spectrogram(sig,hanning(1024),200,[],fs,'yaxis')
 
 
 [p,t,s] = swipep(sig,fs);
 t2 = linspace(0,ceil(length(t)/1000),(length(t)));
 t2 = t2';
-subplot(312);
-plot(t2 , s);
-title('Swipep')
+
+% subplot(312);
+% plot(t2 , s);
+% title('Swipep')
+
+
 
 x = (0 : length(s)-1);
 y = s' ;
@@ -54,8 +59,8 @@ st_time = t2(pred_start_ind);
 stop_time = t2(pred_stop_ind);
 
 predicted_duration = stop_time - st_time;
-
-
+duration_check = predicted_duration < 3 ; % Ign0roring durations below 5 seconds
+phone_count = length(duration_check) - nnz(duration_check); %Phone_count is the predicted counnt
 
 subplot(313);plot(t2,s);hold on;
 plot(t2 , yy2,'g');hold on;

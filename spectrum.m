@@ -1,5 +1,5 @@
 clear all
-[sig, fs] = audioread('4012_P_Asthma_F_after_Mil_Y_uuu_6.wav');
+[sig, fs] = audioread('ae_107_60960.wav');
 %finding power spectrum
 M = length(sig);
 xfft = fft(sig);

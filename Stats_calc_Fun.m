@@ -13,37 +13,8 @@ count = zeros(4, length(all_fns));
 for k=1:length(all_fns)
     filename = all_fns{k};
 
-    % input
-    [sig, fs] = audioread(filename);
-    t = (1:length(sig)) / fs;
-    
-    sig = normalize(sig);
-    audioIn = sig;    
-%     % get spectral power: fft
-%     n = length(t);
-%     f = fft(sig, n);
-%     PSD = f .* conj(f) / n;
-%     freq = fs / n * (0:n);
-%     L = 1:floor(n / 2);
 
-%     PSD = PSD(L);
-%     freq = freq(L);
-
-    % get max freq component
-%     [~, i] = max(PSD);
-%     fms(k) = freq(i);
-
-    % calc frequency range - r: start, end
-%     off = 55;
-%     if (fms(k) - off > 0)
-%         r.start = fms(k) - off;
-%     else
-%         r.start = fms(k) + 5;
-%     end
-%     r.end = fms(k) + off;
-
-%     pred_count = countStimsL(filename, r, 0.9, 0.2);
-[p,t,s] = swipep(audioIn,fs);
+[p,t,s] = swipep(filename,fs);
 x = (0 : length(s)-1);
 y = s' ;
 yy2 = smooth(x,y,2001,'sgolay',4);
